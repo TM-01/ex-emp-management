@@ -33,7 +33,7 @@ public class AdministratorRepository {
 	private NamedParameterJdbcTemplate template;
 
 	public void insert(Administrator administrator) {
-		String sql = ";INSERT INTO administrators(name, mail_address, password) VALUES(':name', ':mail', ':pass')";
+		String sql = ";INSERT INTO administrators(name, mail_address, password) VALUES(:name, :mail, :pass)";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", administrator.getName())
 				.addValue("mail", administrator.getMailAddress()).addValue("pass", administrator.getPassword());
 		template.update(sql, param);
@@ -41,7 +41,7 @@ public class AdministratorRepository {
 	}
 
 	public Administrator findByMailAddressAndPassword(String mailAddres, String password) {
-		String sql="SELECT id, name, mail_address, password FROM administrators WHERE mail_address = ':mail' AND password = ':pass';";
+		String sql="SELECT id, name, mail_address, password FROM administrators WHERE mail_address = :mail AND password = :pass;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mail", mailAddres).addValue("pass", password);
 		
 		List<Administrator> administratorList = template.query(sql, param, ADMINISTRATOR_ROW_MAPPER);
