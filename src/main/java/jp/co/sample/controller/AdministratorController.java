@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.form.InsertAdministratorForm;
 import jp.co.sample.service.AdministratorService;
-
+/**
+ * コントローラー.
+ * @author tatsuro.miyazaki
+ *
+ */
 @Controller
 @RequestMapping("/")
 public class AdministratorController {
