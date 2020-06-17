@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ch.qos.logback.core.joran.util.beans.BeanUtil;
 import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
+import jp.co.sample.form.LoginForm;
 import jp.co.sample.service.AdministratorService;
 /**
  * コントローラー.
@@ -50,6 +51,20 @@ public class AdministratorController {
 		BeanUtils.copyProperties(form, administrator);
 		administratorService.insert(administrator);
 		return "redirect:/";
+	}
+	
+	@ModelAttribute
+	public LoginForm setUpLoginForm() {
+		return new LoginForm();
+	}
+	/**
+	 * 
+	 * @return
+	 * loginページにフォワード
+	 */
+	@RequestMapping("/")
+	public String toLogin() {
+		return "administrator/login.html";
 	}
 
 }
