@@ -52,6 +52,7 @@ public class AdministratorController {
 		administratorService.insert(administrator);
 		return "redirect:/";
 	}
+<<<<<<< HEAD
 	
 	@ModelAttribute
 	public LoginForm setUpLoginForm() {
@@ -66,5 +67,7 @@ public class AdministratorController {
 	public String toLogin() {
 		return "administrator/login.html";
 	}
+=======
+>>>>>>> 8617dacd37c353931212f90a9af9c5a7aa78d70a
 
 }
