@@ -36,9 +36,9 @@ public class AdministratorController {
 	}
 	
 	/**
-	 * 
+	 * 入力フォームの表示.
 	 * @return 入力フォーム
-	 * 入力フォームの表示
+	 * 
 	 */
 	@RequestMapping("/toInsert")
 	public String toInsert() {
@@ -60,7 +60,6 @@ public class AdministratorController {
 		return "redirect:/";
 	}
 	
-
 	/**
 	 * 
 	 * @return
@@ -90,5 +89,16 @@ public class AdministratorController {
 			session.setAttribute("administratorName", administrator.getName());
 		}
 		return "employee/list";
+	}
+	
+	/**
+	 * ログアウトをする.
+	 * 
+	 * @return ログイン画面へフォワード
+	 */
+	@RequestMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "administrator/login";
 	}
 }

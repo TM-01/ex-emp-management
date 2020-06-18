@@ -13,6 +13,7 @@ import jp.co.sample.form.UpdateEmployeeForm;
 import jp.co.sample.service.EmployeeService;
 /**
  * 従業員情報を検索する処理を記述.
+ * 
  * @author tatsuro.miyazaki
  *
  */
@@ -21,10 +22,17 @@ import jp.co.sample.service.EmployeeService;
 public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
+	
+	@ModelAttribute
+	public UpdateEmployeeForm setUpUpdateEmployeeForm() {
+		return new UpdateEmployeeForm();
+	}
+	
 	/**
 	 * 従業員一覧を出力.
+	 * 
 	 * @param model 従業員一覧を格納
-	 * @return listにフォワードする
+	 * @return 従業員一覧画面
 	 */
 	@RequestMapping("/showList")
 	public String showList(Model model) {
@@ -34,19 +42,13 @@ public class EmployeeController {
 		
 		return "employee/list";
 	}
-	/**
-	 * UpdateEmployeeFormをmodelに格納.
-	 * @return
-	 */
-	@ModelAttribute
-	public UpdateEmployeeForm setUpUpdateEmployeeForm() {
-		return new UpdateEmployeeForm();
-	}
+
 	/**
 	 * 従業員情報を取得する.
+	 * 
 	 * @param id 従業員のID
-	 * @param model
-	 * @return detailにフォワード
+	 * @param model リクエストスコープ
+	 * @return 従業員詳細画面にフォワード
 	 */
 	@RequestMapping("/showDetail")
 	public String showDetai(String id, Model model) {
@@ -58,6 +60,7 @@ public class EmployeeController {
 	
 	/**
 	 * 従業員詳細（不要人数）を更新.
+	 * 
 	 * @param form 送られてきたリクエストパラメータ
 	 * @return showListへフォワード
 	 */

@@ -13,6 +13,7 @@ public class Administrator {
 	private String name;
 	/** メールアドレス */
 	private String mailAddress;
+	/** パスワード*/
 	private String password;
 	
 	public Administrator() {

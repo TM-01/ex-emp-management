@@ -5,7 +5,9 @@ package jp.co.sample.form;
  * ログイン時のフォームデータを格納
  */
 public class LoginForm {
+	/** メールアドレス*/
 	private String mailAddress;
+	/** パスワード*/
 	private String password;
 	
 	public String getMailAddress() {
