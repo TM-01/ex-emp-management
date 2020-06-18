@@ -12,9 +12,9 @@ import org.springframework.stereotype.Repository;
 import jp.co.sample.domain.Administrator;
 
 /**
+ * administratorsテーブルを操作するリポジトリ.
  * 
  * @author tatsuro.miyazaki
- * insertとmail,pass検索
  * 
  */
 
@@ -24,22 +24,33 @@ public class AdministratorRepository {
 		Administrator administrator = new Administrator();
 		administrator.setId(rs.getInt("id"));
 		administrator.setName(rs.getString("name"));
-		administrator.setMailAddress(rs.getString("mailAddress"));
+		administrator.setMailAddress(rs.getString("mail_address"));
 		administrator.setPassword(rs.getString("password"));
 		return administrator;
 	};
 
 	@Autowired
 	private NamedParameterJdbcTemplate template;
-
+	
+	/**
+	 * 管理者情報の挿入.
+	 * 
+	 * @param administrator 管理者情報
+	 */
 	public void insert(Administrator administrator) {
-		String sql = ";INSERT INTO administrators(name, mail_address, password) VALUES(:name, :mail, :pass)";
+		String sql = "INSERT INTO administrators(name, mail_address, password) VALUES(:name, :mail, :pass)";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", administrator.getName())
 				.addValue("mail", administrator.getMailAddress()).addValue("pass", administrator.getPassword());
 		template.update(sql, param);
 
 	}
-
+	/**
+	 * メールアドレスとパスワードから管理者を検索する.
+	 * 
+	 * @param mailAddres　入力されたメールアドレス
+	 * @param password　入力されたパスワード
+	 * @return リストのサイズが0の時にnull,そうでないときには管理者情報を返す
+	 */
 	public Administrator findByMailAddressAndPassword(String mailAddres, String password) {
 		String sql="SELECT id, name, mail_address, password FROM administrators WHERE mail_address = :mail AND password = :pass;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mail", mailAddres).addValue("pass", password);

@@ -1,15 +1,17 @@
 package jp.co.sample.domain;
 
 /**
+ * 管理者情報の格納先.
  * 
  * @author tatsuro.miyazaki
- * 役員情報の格納先
  * 
  */
-
 public class Administrator {
+	/** ID */
 	private Integer id;
+	/** 名前 */
 	private String name;
+	/** メールアドレス */
 	private String mailAddress;
 	private String password;
 	
