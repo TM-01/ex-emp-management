@@ -26,6 +26,7 @@ public class EmployeeRepository {
 		employee.setGender(rs.getString("gender"));
 		employee.setHireDate(rs.getDate("hire_date"));
 		employee.setMailAddress(rs.getString("mail_address"));
+		employee.setAddress(rs.getString("address"));
 		employee.setZipCode(rs.getString("zip_code"));
 		employee.setTelephone(rs.getString("telephone"));
 		employee.setSalary(rs.getInt("salary"));
@@ -73,11 +74,11 @@ public class EmployeeRepository {
 				+ " gender = :gender, hire_date = :hireDate, mail_address = :mailAddress,"
 				+ " zip_code = :zipCode, address = :address, telephone = :telephone, salary = :salary,"
 				+ " characteristics = :characteristics, dependents_count = :dependentsCount WHERE id = :id";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("mame", employee.getName())
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", employee.getName())
 				.addValue("image", employee.getImage()).addValue("gender", employee.getGender()).addValue("hireDate", employee.getHireDate())
 				.addValue("mailAddress", employee.getMailAddress()).addValue("zipCode", employee.getZipCode()).addValue("address", employee.getAddress())
 				.addValue("telephone", employee.getTelephone()).addValue("salary", employee.getSalary()).addValue("characteristics", employee.getCharacteristics())
-				.addValue("dependentsCount", employee.getDependentsCount());
+				.addValue("dependentsCount", employee.getDependentsCount()).addValue("id", employee.getId());
 		template.update(sql, param);
 	}
 }

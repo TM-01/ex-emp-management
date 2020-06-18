@@ -34,16 +34,42 @@ public class EmployeeController {
 		
 		return "employee/list";
 	}
-	
+	/**
+	 * UpdateEmployeeFormをmodelに格納.
+	 * @return
+	 */
 	@ModelAttribute
 	public UpdateEmployeeForm setUpUpdateEmployeeForm() {
 		return new UpdateEmployeeForm();
 	}
+	/**
+	 * 従業員情報を取得する.
+	 * @param id 従業員のID
+	 * @param model
+	 * @return detailにフォワード
+	 */
 	@RequestMapping("/showDetail")
 	public String showDetai(String id, Model model) {
 		Employee employee = employeeService.showDetail(Integer.parseInt(id));
 		model.addAttribute("employee", employee);
 		
 		return "employee/detail";
+	}
+	
+	/**
+	 * 従業員詳細（不要人数）を更新.
+	 * @param form 送られてきたリクエストパラメータ
+	 * @return showListへフォワード
+	 */
+	@RequestMapping("/update")
+	public String update(UpdateEmployeeForm form) {
+		System.out.println(form.toString());
+		Employee employee = employeeService.showDetail(Integer.parseInt(form.getId()));
+		System.out.println(employee.toString());
+		employee.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
+		System.out.println(employee.toString());
+		employeeService.update(employee);
+		
+		return"redirect:/employee/showList";
 	}
 }

@@ -89,6 +89,6 @@ public class AdministratorController {
 		}else {
 			session.setAttribute("administratorName", administrator.getName());
 		}
-		return "employee/showList";
+		return "employee/list";
 	}
 }
