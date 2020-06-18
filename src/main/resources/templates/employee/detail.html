@@ -82,7 +82,16 @@
 							      写真
 							    </th>
 							    <td>
+<<<<<<< HEAD
 							      	<img src="../../static/img/e1.png" th:src="@{'/img/' + ${employee.image}}">
+=======
+							      <span th:if="${employee.gender == '男性'}">
+							      	<img src="../../static/img/e1.png" th:src="@{'/img/' + ${employee.image}}">
+							      </span>
+							      <span th:if="${employee.gender == '女性'}">
+							      	<img src="../../static/img/e2.png">
+							      </span>
+>>>>>>> fb06540728eb83debf3a426ad4e1a9ae4ece5060
 							    </td>
 							  </tr>
 							  <tr>
@@ -158,7 +167,11 @@
 											扶養人数を入力してください
 									</label>
 									<label class="control-label" style="color: red" for="dependentsCount"></label>
+<<<<<<< HEAD
 									<input type="hidden" name="id" value="5" th:field="${employee.id}">
+=======
+									<input type="hidden" name="id" value="5" th:value="${employee.id}">
+>>>>>>> fb06540728eb83debf3a426ad4e1a9ae4ece5060
 									<input type="text" name="dependentsCount" id="dependentsCount" class="form-control" value="3" th:field="${employee.dependentsCount}">
 							    </td>
 							  </tr>
